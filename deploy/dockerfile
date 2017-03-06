@@ -1,0 +1,7 @@
+FROM alpine:latest
+MAINTAINER cloudinstuments_team
+ARG APPNAME
+RUN mkdir /usr/local/cloudinstruments/
+COPY $APPNAME /usr/local/cloudinstruments/$APPNAME
+RUN chmod +x /usr/local/cloudinstruments/$APPNAME
+ENTRYPOINT ["/usr/local/cloudinstruments/api"]
