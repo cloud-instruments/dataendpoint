@@ -5,7 +5,6 @@ import (
 	"cloudinstruments/libs/jwt"
 	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -27,15 +26,17 @@ var GetTokenHandler = http.HandlerFunc(
 			return
 		}
 
+		decodedSecret := r.Header.Get("Authentication")
+		fmt.Println(decodedSecret)
 		defer r.Body.Close()
-		d := base64.NewDecoder(base64.StdEncoding, r.Body)
-		content, err := ioutil.ReadAll(d)
-		if err != nil {
+		secret, errDecoding := base64.StdEncoding.DecodeString(decodedSecret)
+		if errDecoding != nil {
 			http.Error(w, "Forbidden", http.StatusForbidden)
 			return
 		}
 
-		if !bytes.Equal(AuthSecret, content) {
+		fmt.Println(secret)
+		if !bytes.Equal(AuthSecret, secret) {
 			http.Error(w, "Forbidden", http.StatusForbidden)
 			return
 		}
@@ -43,7 +44,7 @@ var GetTokenHandler = http.HandlerFunc(
 		provider := jwt.NewJwtProvider(JwtSecret)
 		signedToken, errGettingToken := provider.New()
 		if errGettingToken != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+			http.Error(w, errGettingToken.Error(), http.StatusInternalServerError)
 			return
 		}
 
