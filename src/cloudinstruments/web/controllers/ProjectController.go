@@ -20,7 +20,7 @@ var GetBatteryTestHandler = http.HandlerFunc(
 		fmt.Fprint(w, "GetBatteryTest executed")
 	})
 
-var PostBatteryTestHandler = http.HandlerFunc(
+var PostBatteryCycleHandler = http.HandlerFunc(
 	func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
 			http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
@@ -29,17 +29,45 @@ var PostBatteryTestHandler = http.HandlerFunc(
 
 		defer r.Body.Close()
 		d := json.NewDecoder(r.Body)
-		var t models.Project
-		err := d.Decode(&t)
+		var cycle models.BatteryCycle
+		err := d.Decode(&cycle)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		fmt.Print(t)
+		fmt.Print(cycle)
 		provider := dataproviders.NewDynamoDBDataProvider()
-		provider.PostBatteryTest(&t)
-		fmt.Fprint(w, "PostBatteryTest executed")
+		if _, errPosting := provider.PostBatteryCycle(&cycle); errPosting != nil {
+			http.Error(w, "Invalid request method", http.StatusInternalServerError)
+		}
+
+		fmt.Fprint(w, "PostBatteryCycle executed")
+	})
+
+var PostProjectHandler = http.HandlerFunc(
+	func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodGet {
+			http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+			return
+		}
+
+		defer r.Body.Close()
+		d := json.NewDecoder(r.Body)
+		var project models.Project
+		err := d.Decode(&project)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		fmt.Print(project)
+		provider := dataproviders.NewDynamoDBDataProvider()
+		if _, errPosting := provider.PostProject(&project); errPosting != nil {
+			http.Error(w, "Invalid request method", http.StatusInternalServerError)
+		}
+
+		fmt.Fprint(w, "PostProject executed")
 	})
 
 var DeleteBatteryTestHandler = http.HandlerFunc(

@@ -9,9 +9,11 @@ var RootHandler = http.HandlerFunc(
 		resp :=
 			`
 		/GetToken - Generates a JWT token
-		/PostBatteryTest - Save a new battery test
-		/DeleteBatteryTest - Removes a new battery test by ProjectName
-		/GetBatteryTest - Removes a new battery project by ProjectName
+		/PostProject - Saves a new battery project
+		/DeleteProject - Deletes a battery project along with all associated data
+		/GetBatteryProjects - Retrieves a list of battery projects
+		/PostBatteryCycles - Save a battery cycle
+		/GetBatteryCycles - Retrieves a list of battery cycles for ProjectName
 		
 		`
 		w.Header().Set("Content-Type", "application/json")

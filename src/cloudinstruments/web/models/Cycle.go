@@ -14,15 +14,14 @@ const (
 )
 
 type BatteryCycle struct {
-	Id           string
 	ProjectName  string
 	DeviceName   string
 	Cycle        CycleType
 	Duration     time.Duration
-	StartVoltage float32
-	EndVoltage   float32
-	VoltageDiff  float32
-	StartCurrent float32
-	EndCurrent   float32
-	CurrentDiff  float32
+	StartVoltage float64
+	EndVoltage   float64
+	VoltageDiff  float64
+	StartCurrent float64
+	EndCurrent   float64
+	CurrentDiff  float64
 }

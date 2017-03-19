@@ -1,16 +1,16 @@
 package models
 
-import ()
+import (
+	"time"
+)
 
 type Project struct {
-	Id             string
-	Project        string
+	ProjectName    string
 	DeviceName     string
 	NumberOfCycles int
 	Tag            string
 	Comment        string
-	Created        string
-	LastUpdated    string
+	Created        time.Duration
+	LastUpdated    time.Duration
 	FileName       string
-	Cycles         []BatteryCycle
 }
