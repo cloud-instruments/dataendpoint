@@ -1,9 +1,5 @@
 package models
 
-import (
-	"time"
-)
-
 type CycleType int
 
 const (
@@ -14,15 +10,15 @@ const (
 )
 
 type BatteryCycle struct {
-	Id           string
 	ProjectName  string
+	CycleNumber  int
 	DeviceName   string
-	Cycle        CycleType
-	Duration     time.Duration
-	StartVoltage float32
-	EndVoltage   float32
-	VoltageDiff  float32
-	StartCurrent float32
-	EndCurrent   float32
-	CurrentDiff  float32
+	Cycle        int
+	Duration     int
+	StartVoltage float64
+	EndVoltage   float64
+	VoltageDiff  float64
+	StartCurrent float64
+	EndCurrent   float64
+	CurrentDiff  float64
 }

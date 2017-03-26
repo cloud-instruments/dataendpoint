@@ -1,10 +1,7 @@
 package models
 
-import ()
-
 type Project struct {
-	Id             string
-	Project        string
+	ProjectName    string
 	DeviceName     string
 	NumberOfCycles int
 	Tag            string
@@ -12,5 +9,4 @@ type Project struct {
 	Created        string
 	LastUpdated    string
 	FileName       string
-	Cycles         []BatteryCycle
 }

@@ -1,0 +1,10 @@
+{
+	"ProjectName": "device_test",
+	"DeviceName": "OMGDevice",
+	"NumberOfCycles": 2,
+	"Tag": "smth",
+	"Comment": "blabla",
+	"Created": "123123",
+	"LastUpdated": "123123",
+	"FileName": "test"
+}

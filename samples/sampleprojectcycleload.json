@@ -1,0 +1,12 @@
+{
+		"ProjectName": "device_test",
+		"DeviceName": "OMGDevice",
+		"CycleType": 1,
+		"Duration": 12,
+		"StartVoltage": 0,
+		"EndVoltage": 1,
+		"VoltageDiff": 1,
+		"StartCurrent": 1,
+		"EndCurrent": 1,
+		"CurrentDiff": 1
+}
